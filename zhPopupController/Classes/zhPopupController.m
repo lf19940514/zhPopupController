@@ -497,15 +497,15 @@ static CGFloat zh_randomValue(int i, int j) {
     switch (_layoutType) {
         case zhPopupLayoutTypeTop:
             return CGPointMake(point.x,
-                               _popupView.bounds.size.height / 2);
+                               _popupView.bounds.size.height / 2 + self.offset);
         case zhPopupLayoutTypeBottom:
             return CGPointMake(point.x,
-                               _maskView.bounds.size.height - _popupView.bounds.size.height / 2);
+                               _maskView.bounds.size.height - _popupView.bounds.size.height / 2 - self.offset);
         case zhPopupLayoutTypeLeft:
-            return CGPointMake(_popupView.bounds.size.width / 2,
+            return CGPointMake(_popupView.bounds.size.width / 2 + self.offset,
                                point.y);
         case zhPopupLayoutTypeRight:
-            return CGPointMake(_maskView.bounds.size.width - _popupView.bounds.size.width / 2,
+            return CGPointMake(_maskView.bounds.size.width - _popupView.bounds.size.width / 2 - self.offset,
                                point.y);
         default: // zhPopupLayoutTypeCenter
         {
@@ -819,22 +819,22 @@ static CGFloat zh_randomValue(int i, int j) {
                     
                 } break;
                 case zhPopupLayoutTypeBottom: {
-                    if (g.view.frame.origin.y + translation.y > _maskView.bounds.size.height - g.view.bounds.size.height) {
+                    if (g.view.frame.origin.y + translation.y > _maskView.bounds.size.height - g.view.bounds.size.height - self.offset) {
                         g.view.center = CGPointMake(g.view.center.x, g.view.center.y + translation.y);
                     }
                 } break;
                 case zhPopupLayoutTypeTop: {
-                    if (g.view.frame.origin.y + g.view.frame.size.height + translation.y  < g.view.bounds.size.height) {
+                    if (g.view.frame.origin.y + g.view.frame.size.height + translation.y  < g.view.bounds.size.height + self.offset) {
                         g.view.center = CGPointMake(g.view.center.x, g.view.center.y + translation.y);
                     }
                 } break;
                 case zhPopupLayoutTypeLeft: {
-                    if (g.view.frame.origin.x + g.view.frame.size.width + translation.x < g.view.bounds.size.width) {
+                    if (g.view.frame.origin.x + g.view.frame.size.width + translation.x < g.view.bounds.size.width +self.offset) {
                         g.view.center = CGPointMake(g.view.center.x + translation.x, g.view.center.y);
                     }
                 } break;
                 case zhPopupLayoutTypeRight: {
-                    if (g.view.frame.origin.x + translation.x > _maskView.bounds.size.width - g.view.bounds.size.width) {
+                    if (g.view.frame.origin.x + translation.x > _maskView.bounds.size.width - g.view.bounds.size.width - self.offset) {
                         g.view.center = CGPointMake(g.view.center.x + translation.x, g.view.center.y);
                     }
                 } break;
