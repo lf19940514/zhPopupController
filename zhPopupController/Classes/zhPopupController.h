@@ -45,6 +45,8 @@ typedef NS_ENUM(NSInteger, zhPopupSlideStyle) {
 
 @interface zhPopupController : NSObject
 
+@property (nonatomic, assign) CGFloat offset;    
+    
 @property (nonatomic, weak) id <zhPopupControllerDelegate> _Nullable delegate;
 
 /// Convenient to initialize and set maske type. (Through the `- init` initialization, maskType is zhPopupMaskTypeBlackTranslucent)
